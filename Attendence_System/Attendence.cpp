@@ -95,6 +95,40 @@ void deleting(){
 
 }
 
+void updating(){
+    if(total_sum==0){
+        cout<<"YOU HAVEN'T ENTERED ANY DATA!!"<<endl;
+    }
+
+    else{
+        string roll;
+        cout<<"Enter the Roll Number for which you want to update "<<endl;
+        cin >>roll;
+        string ooo;
+        cout<<"Enter what you want to update ";
+        cin >> ooo;
+
+        for(int i=0; i<total_sum; i++){
+            if((roll==b[i])&&(ooo=="name")){
+                cout<<"Enter New name ";
+                cin>>a[i];                
+            }
+            else if((roll==b[i])&&(ooo=="roll")){
+                cout<<"Enter New Roll Number ";
+                cin>>b[i];
+            }
+            else if((roll==b[i])&&(ooo=="department")){
+                cout<<"Enter New department ";
+                cin>>c[i];
+                }
+            else if((roll==b[i])&&(ooo=="contact")){
+                cout<<"Enter New Contact ";
+                cin>>d[i];
+            }
+        }
+    }
+}
+
  
 main(){
     int value;
@@ -106,7 +140,8 @@ main(){
     cout<<"2. Show all the Data"<<endl;
     cout<<"3. Search Data"<<endl;
     cout<<"4. Delete Data"<<endl;
-    cout<<"5. TO EXIT!!!"<<endl;
+    cout<<"5. Update Data"<<endl;
+    cout<<"6. TO EXIT!!!"<<endl;
 
     cin >> value;
 
@@ -125,10 +160,13 @@ main(){
         deleting();
         break;
     case 5:
+        updating();
+        break;
+    case 6:
         exit(0);
         break;
     default:
-        cout<<"Choose Options from 1-5.";
+        cout<<"Choose Options from 1-6.";
         break;
     }
 }
