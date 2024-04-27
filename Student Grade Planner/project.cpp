@@ -26,21 +26,21 @@ int main(){
     int option_choosed;
     
     // Add delay for each line using Sleep(300)
-    Sleep(300);
-    cout << "\t\t***********************************" << endl;
-    Sleep(300);
+    Sleep(200);
+    cout << "\t\t*****************************************" << endl;
+    Sleep(200);
     cout << "\t\t\t  Project made by:" << endl << endl;
-    Sleep(300);
-    cout << "\t\tTehman (23-CP-11)   Saira(23-CP-05)" << endl << endl;
-    Sleep(300);
+    Sleep(200);
+    cout << "\t\tTehman Hassan (23-CP-11)  Saira (23-CP-05) " << endl << endl;
+    Sleep(200);
     cout << "\t\t********USER AUTENTICATION FORM**********" << endl << endl;
-    Sleep(300);
+    Sleep(200);
     cout << "\t\t1. Login" << endl;
-    Sleep(300);
+    Sleep(200);
     cout << "\t\t2. New Register" << endl;
-    Sleep(300);
+    Sleep(200);
     cout << "\t\t3. Exit" << endl;
-    Sleep(300);
+    Sleep(200);
     cout << "\t\tENTER YOUR CHOICE: ";
 
     cin >> option_choosed;
@@ -178,6 +178,7 @@ void login(){
     //     return;
 
 
+
     // }
 }
 
@@ -186,25 +187,25 @@ void students(){
     int option_choosed;
     int new_sem=0;
     
-    Sleep(300);
+    Sleep(200);
     cout << "\t\t*******************************************" << endl;
-    Sleep(300);
+    Sleep(200);
     cout << "\t\t\tWELCOME TO STUDENT GRADE PLANNER" << endl << endl;
-    Sleep(300);
+    Sleep(200);
     cout << "\t\t******* CHOOSE OPTIONS BELOW **************" << endl << endl;
-    Sleep(300);
-    cout << "\t\t1. Calculate GPA" << endl;
-    Sleep(300);
+    Sleep(200);
+    cout << "\t\t1. Calculate GPA and send to Email Address" << endl;
+    Sleep(200);
     cout << "\t\t2. Calculate Graph" << endl;
-    Sleep(300);
+    Sleep(200);
     cout << "\t\t3. Show All Data in Terminal" << endl;
-    Sleep(300);
+    Sleep(200);
     cout << "\t\t4. Register For New Semester" << endl;
-    Sleep(300);
+    Sleep(200);
     cout << "\t\t5. Check that If you have Registered for New Semmester" << endl;
-    Sleep(300);    
+    Sleep(200);    
     cout << "\t\t6. Exit to Main Menu" << endl;
-    Sleep(300);
+    Sleep(200);
     cout << "\t\tENTER YOUR CHOICE: ";
 
     cin >> option_choosed;
@@ -319,7 +320,7 @@ void check_reg(int new_sem) {
 }
 
 
-void gpa() {
+void calculate_gpa(string email) {
 
     cout<<endl<<endl;
  	cout<<"\t\t----------------------------------------------------"<<endl;
@@ -365,6 +366,9 @@ void gpa() {
  		cout<<"-------------------------------"<<endl;
  		
 	 }
+
+
+     
     for(int i=1;i<=NoOfSubs;i++){
     	total=credits[i]*points[i];
     	sum +=total;
@@ -382,10 +386,22 @@ void gpa() {
 
     ofstream gpa("database.txt", ios::app);
     gpa<<"Your Total Points are: "<<sum<<endl<<"Your Total Credit Hours are: "<<totalCredits<<endl<<"Your Total GPA is: "<<final_gpa<<endl<<endl;
+    string command = "python send_email.py " + to_string(sum) + " " + to_string(totalCredits) + " " + to_string(final_gpa) + " " + email;
+    system(command.c_str());
 	
     system("cls");
 
     return;
+}
+
+
+void gpa() {
+    string email;
+    cout << "Enter your email address: ";
+    cin >> email;
+
+    cout << "Calculating GPA..." << endl;
+    calculate_gpa(email);
 }
 
 void showAllData() {
@@ -437,4 +453,3 @@ void showAllData() {
 void graph(){
     cout<<"You have entered graph";
 }
-
